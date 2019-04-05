@@ -8,7 +8,7 @@
 
 ### DESCRIPTION
 
-Use SignalFx to monitor Elastic Load Balancing (ELB) via [Amazon CloudWatch](https://github.com/signalfx/integrations/tree/master/aws)[](sfx_link:aws).
+Use SignalFx to monitor Elastic Load Balancing (ELB) via [Amazon Web Services](https://github.com/signalfx/integrations/tree/master/aws)[](sfx_link:aws).
 
 #### FEATURES
 
@@ -24,7 +24,7 @@ Use SignalFx to monitor Elastic Load Balancing (ELB) via [Amazon CloudWatch](htt
 
 ### INSTALLATION
 
-To access this integration, [connect to CloudWatch](https://github.com/signalfx/integrations/tree/master/aws)[](sfx_link:aws) on the SignalFx Integrations page.
+To access this integration, [connect to CloudWatch](https://github.com/signalfx/integrations/tree/master/aws)[](sfx_link:aws).
 
 By default, SignalFx will import all CloudWatch metrics that are available in your account. To retrieve metrics for a subset of available services or regions, modify the connection on the Integrations page.
 
@@ -44,7 +44,7 @@ For ELB, SignalFx will scan every load balancer name from your AWS account and p
 
 ### METRICS
 
-For more information about the metrics emitted by Elastic Load Balancing, visit the service's homepage at https://aws.amazon.com/elasticloadbalancing/.
+For more information about the metrics emitted by Elastic Load Balancing, visit the service's homepage at <a target="_blank" href="https://aws.amazon.com/elasticloadbalancing/">https://aws.amazon.com/elasticloadbalancing/</a>.
 
 ### LICENSE
 

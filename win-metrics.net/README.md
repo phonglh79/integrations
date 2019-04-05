@@ -50,12 +50,12 @@ This will allow you to see all of of your `api.use` metrics together or split it
 ## CONFIGURATION
 
 To configure Metrics.Net to report you need to set up two things
- - Your SignalFX API token
+ - Your SignalFx API token
  - The default source
 
-### Your SignalFX API Token
+### Your SignalFx API Token
 
-Your API SignalFX API token is available if you click on your avatar in the SignalFx UI.
+Your API SignalFx API token is available if you click on your avatar in the SignalFx UI.
 
 ### Default source name
 
@@ -124,13 +124,13 @@ The Metrics.NET library calculates aggregations for almost all of the metric typ
 
  - Counter(with items) -> percentage
 
- - Histogram -> count, last, min, mean, max, stddev, median, percent_75, percent_95, percent_98, percent_99, percent_999
+ - Histogram -> count, last, min, mean, max, stddev, median, percent\_75, percent\_95, percent\_98, percent\_99, percent\_999
 
- - Meter(no items) -> rate_mean, rate_1min, rate_5min, rate_15min
- - Meter(with items) -> per Item: percent, rate_mean, rate_1min, rate_5min, rate_15min
+ - Meter(no items) -> rate\_mean, rate\_1min, rate\_5min, rate\_15min
+ - Meter(with items) -> per Item: percent, rate\_mean, rate\_1min, rate\_5min, rate\_15min
 
 
- - Timer -> count, active_sessions, rate_mean, rate_1min, rate_5min, rate_15min, last, min, mean, max, stddev, median, percent_75, percent_95, percent_98, percent_99, percent_999
+ - Timer -> count, active\_sessions, rate\_mean, rate\_1min, rate\_5min, rate\_15min, last, min, mean, max, stddev, median, percent\_75, percent\_95, percent\_98, percent\_99, percent\_999
 
 The client can specify which of these aggregations they wish to send. By default count,min,mean,max aggregations are sent.
 
@@ -168,7 +168,7 @@ You must specify the following attributes:
 
 |Attribute | definition |
 |----------|------------|
-|apiToken | Your SignalFx token |
+|apiToken | Your SignalFx token (YOUR_SIGNALFX_API_TOKEN) |
 
 The following attributes are optional
 
@@ -183,7 +183,7 @@ The following attributes are optional
 E.g
 
 ```xml
-  <signalFxReporter apiToken="AAABQWDCC" sourceType="netbios" sampleInterval="00:00:05"/>
+  <signalFxReporter apiToken="YOUR_SIGNALFX_API_TOKEN" sourceType="netbios" sampleInterval="00:00:05"/>
 ```
 
 ### Source Value for a Metric
@@ -200,7 +200,7 @@ It is often useful, but not required, to identify the "source" of a metric. An e
 To add default dimensions add a nested <defaultDimensions> in your <signalFxReporter> stanza:
 
 ```xml
-  <signalFxReporter apiToken="AAABQWDCC" sourceType="netbios" sampleInterval="00:00:05"/>
+  <signalFxReporter apiToken="YOUR_SIGNALFX_API_TOKEN" sourceType="netbios" sampleInterval="00:00:05"/>
     <defaultDimensions>
       <defaultDimension name="environment" value="prod"/>
       <defaultDimension name="serverType" value="API"/>

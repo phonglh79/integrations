@@ -1,4 +1,4 @@
-# ![](./img/integration_aws.png) Amazon CloudWatch
+# ![](./img/integration_aws.png) Amazon Web Services
 
 - [Description](#description)
 - [Configuration](#configuration)
@@ -12,7 +12,7 @@ Use SignalFx to monitor AWS services via Amazon CloudWatch. This integration ena
 
 #### FEATURES
 
-Connecting to CloudWatch allows you to take advantage of SignalFx’s extensive CloudWatch support.
+Connecting to CloudWatch allows you to take advantage of SignalFx's extensive CloudWatch support.
 
 - The SignalFx Infrastructure page visualizes EC2 instances.
 
@@ -24,9 +24,8 @@ Connecting to CloudWatch allows you to take advantage of SignalFx’s extensive 
 
 ### CONFIGURATION
 
-Connect to CloudWatch on the Integrations page in SignalFx.
-
-To connect SignalFx to CloudWatch, you’ll create a new IAM role in AWS for SignalFx to use, provide information from SignalFx to that new role, then provide SignalFx with the role’s ARN. You must be an administrator of your SignalFx account to connect SignalFx to CloudWatch. [Click here for detailed instructions](http://docs.signalfx.com/en/latest/getting-started/send-data.html#cloudwatch).
+To connect SignalFx to CloudWatch, you'll create a new IAM role in AWS for SignalFx to use, provide information from SignalFx to that new role, then provide SignalFx with the role's ARN. You must be an administrator of your SignalFx account to connect SignalFx to CloudWatch. <a target="_blank" href=
+"http://docs.signalfx.com/en/latest/getting-started/send-data.html#connect-to-aws">Click here for detailed instructions.</a>
 
 ### USAGE
 
@@ -36,7 +35,7 @@ To connect SignalFx to CloudWatch, you’ll create a new IAM role in AWS for Sig
 
 SignalFx can sync CloudWatch metrics from AWS into SignalFx. By default, AWS CloudWatch metric data is sent in 5-minute periods. If you are using Detailed Monitoring on an AWS service, you can change the interval for syncing data from CloudWatch to SignalFx in 1-minute periods.
 
-To enable CloudWatch metrics to be sent to SignalFx, make sure the “Import CloudWatch” checkbox is checked. SignalFx syncs all CloudWatch metrics data for all services and all regions in use in a given AWS account, but this can be filtered down by clicking on the “All Services” link and selecting the desired services, or by clicking on the “All Regions” link and selecting the desired regions.
+To enable CloudWatch metrics to be sent to SignalFx, make sure the "Import CloudWatch" checkbox is checked. SignalFx syncs all CloudWatch metrics data for all services and all regions in use in a given AWS account, but this can be filtered down by clicking on the "All Services" link and selecting the desired services, or by clicking on the "All Regions" link and selecting the desired regions.
 
 SignalFx automatically imports relevant dimensions for each CloudWatch metric. For example, if you are using Detailed Monitoring for EC2 instances, SignalFx imports the dimensions AutoScalingGroupName, ImageId, InstanceId and InstanceType. These dimensions can be used to filter EC2 instance data.
 
@@ -48,11 +47,10 @@ The following metadata is available for filtering metrics:
 
 | Custom Property	| Description |
 |-----------------|-------------|
-| `aws_account_alias` | AWS account alias that the instance, volume or load balancer is running under |
 | `aws_account_id` | AWS account ID that the instance, volume or load balancer is running under |
 | `aws_tag_[Name of tag]` | Custom tags applied to the instance, volume or load balancer (e.g., aws\_tag\_Name)|
 
-Account alias and ID can be useful because SignalFx allows you to import metrics from more than one AWS account. To distinguish between metrics from different accounts, the account alias and account ID are added as properties to the relevant metric time series.
+Account ID can be useful because SignalFx allows you to import metrics from more than one AWS account. To distinguish between metrics from different accounts, the account ID is added as a property to the relevant metric time series.
 
 SignalFx also syncs AWS tags and makes them available as properties on metrics associated with the relevant resources with the key `aws_tag_[Name of tag]`.
 
@@ -60,7 +58,7 @@ SignalFx also syncs AWS tags and makes them available as properties on metrics a
 
 ##### Recognizing CloudWatch statistics in SignalFx
 
-Much like SignalFx, AWS CloudWatch uses rollups to summarize metrics, and it refers to them as “statistics”. However, because there is not a one-for-one mapping to SignalFx’s data model, the CloudWatch rollups are not directly accessible through the rollup selection menu in the chart builder. Instead, they are captured as individual time series through the use of the dimension `stat`.
+Much like SignalFx, AWS CloudWatch uses rollups to summarize metrics, and it refers to them as "statistics". However, because there is not a one-for-one mapping to SignalFx's data model, the CloudWatch rollups are not directly accessible through the rollup selection menu in the chart builder. Instead, they are captured as individual time series through the use of the dimension `stat`.
 
 | AWS Statistic	| SignalFx dimension |	Definition |
 |---------------|--------------------|-------------|
@@ -72,11 +70,11 @@ Much like SignalFx, AWS CloudWatch uses rollups to summarize metrics, and it ref
 
 To use a CloudWatch metric in a plot, you must always specify the metric name along with a filter for `stat` that is appropriate to the metric you have chosen. For example, if you are using the metric `NetworkPacketsIn`, per the AWS CloudWatch documentation for EC2 metrics, the only statistics that are meaningful are Minimum, Maximum and Average, so you should choose the dimension stat with a value of either `lower`, `upper` or `mean`, respectively, depending on which statistic you want to use.
 
-When syncing data from CloudWatch to SignalFx a 60-second sampling period is used. See [CloudWatch documentation](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html) for more detailed information.
+When syncing data from CloudWatch to SignalFx a 60-second sampling period is used. See <a target="_blank" href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html">CloudWatch documentation</a> for more detailed information.
 
 ##### AWS namespaces
 
-SignalFx imports the namespace for AWS services using the dimension `namespace`. For most services, the namespaces take the format of “AWS/<name_of_service>”, e.g. “AWS/EC2” or “AWS/ELB”. This distinction is important when you want to use metrics that have the same name across services, such as `CPUUtilization`, but only for one service (say, EC2 and not ECS).
+SignalFx imports the namespace for AWS services using the dimension `namespace`. For most services, the namespaces take the format of "AWS/<name_of_service>", e.g. "AWS/EC2" or "AWS/ELB". This distinction is important when you want to use metrics that have the same name across services, such as `CPUUtilization`, but only for one service (say, EC2 and not ECS).
 
 ##### Uniquely identifying AWS instances
 

@@ -1,6 +1,6 @@
-#![](https://github.com/signalfx/integrations/blob/master/collectd-elasticsearch/img/integrations_elasticsearch.png) Elasticsearch
+# ![](https://github.com/signalfx/integrations/blob/master/collectd-elasticsearch/img/integrations_elasticsearch.png) Elasticsearch
 
-_This directory consolidates all the metadata associated with the Elasticsearch collectd plugin. The relevant code for the plugin can be found [here](https://github.com/signalfx/collectd-elasticsearch)_
+Metadata associated with the Elasticsearch collectd plugin can be found <a target="_blank" href="https://github.com/signalfx/integrations/tree/release/collectd-elasticsearch">here</a>. The relevant code for the plugin can be found <a target="_blank" href="https://github.com/signalfx/collectd-elasticsearch">here</a>.
 
 - [Description](#description)
 - [Requirements and Dependencies](#requirements-and-dependencies)
@@ -20,7 +20,7 @@ Use this plugin to monitor the following types of information from an Elasticsea
   * per-index statistics
   * cluster statistics
 
-Original Elasticsearch Documentation https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html
+Original Elasticsearch Documentation <a target="_blank" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html<a/>
 
 #### FEATURES
 
@@ -58,17 +58,23 @@ Original Elasticsearch Documentation https://www.elastic.co/guide/en/elasticsear
 
 ### INSTALLATION
 
-1. Download the [collectd-elasticsearch]( https://github.com/signalfx/collectd-elasticsearch) Python module.
+**If you are using the new Smart Agent, see the docs for [the collectd/elasticsearch
+monitor](https://github.com/signalfx/signalfx-agent/tree/master/docs/monitors/collectd-elasticsearch.md)
+for more information.  The configuration documentation below may be helpful as
+well, but consult the Smart Agent repo's docs for the exact schema.**
 
-1. Download SignalFx’s [sample configuration file](https://github.com/signalfx/integrations/blob/master/collectd-elasticsearch/20-elasticsearch.conf) to `/etc/collectd/managed_config`.
 
-1. Modify the configuration file to provide values that make sense for your environment, as described [below](#configuration).
+1. Download the <a target="_blank" href="https://github.com/signalfx/collectd-elasticsearch">collectd-elasticsearch</a> Python module.
 
-1. Restart collectd.
+2. Download SignalFx’s <a target="_blank" href="https://github.com/signalfx/integrations/blob/master/collectd-elasticsearch/20-elasticsearch.conf">sample configuration file</a> to `/etc/collectd/managed_config`.
+
+3. Modify the configuration file to provide values that make sense for your environment, as described [below](#configuration).
+
+4. Restart collectd.
 
 ### CONFIGURATION
 
-Using the example configuration file [20-elasticsearch.conf](https://github.com/signalfx/integrations/tree/master/collectd-elasticsearch/20-elasticsearch.conf) as a guide, provide values for the configuration options listed below that make sense for your environment and allow you to connect to the Elasticsearch instance to be monitored. 
+Using the example configuration file <a target="_blank" href="https://github.com/signalfx/integrations/tree/master/collectd-elasticsearch/20-elasticsearch.conf">20-elasticsearch.conf</a> as a guide, provide values for the configuration options listed below that make sense for your environment and allow you to connect to the Elasticsearch instance to be monitored.
 
 The plugin is intended to be run on a per-node basis. Define only one "Module" element per `20-elasticsearch.conf` configuration file.
 
@@ -76,7 +82,7 @@ The plugin is intended to be run on a per-node basis. Define only one "Module" e
 | ---------------------|------------|---------------|
 | ModulePath | Path on disk where collectd can find this module. | "/usr/share/collectd/collectd-elasticsearch" |
 | Verbose | Enable verbose logging. | false |
-| Cluster | A name for this cluster. Appears in the dimension `cluster`. | "elasticsearch" |
+| Cluster | A name for this cluster. Appears in the dimension `plugin_instance`. If specified, this value will override the cluster name returned by the ES endpoint. | "elasticsearch" |
 | Indexes | Identifies the indexes for which the plugin should collect statistics. See note below. | ["_all"] |
 | EnableIndexStats | Enable or disable collection of index statistics. | false |
 | IndexStatsMasterOnly | When `true`, index stats will only be sent if the node is the active master.  When `false`, index stats will be sent if the node is master eligible.  This requires EnableIndexStats to be `true`. | false |
@@ -86,9 +92,9 @@ The plugin is intended to be run on a per-node basis. Define only one "Module" e
 | Port | The port number of this instance of Elasticsearch. | "9200" |
 | DetailedMetrics | Turns on additional metric time series. Acceptable values: (true/false). | false |
 | IndexInterval | Interval in seconds at which the plugin will report index metrics.  Must be greater than or equal and divisible by the Interval.  Incorrect values are automatically rounded to a compatible value. | 300 |
-| AdditionalMetrics | A python list of additional metrics to be emitted.  The names provided must match a metric defined in the elasticsearch_collectd.py file. | \[""\] |
-| Username | The plain text username for accessing the Elasticsearch installation (Basic Authentication Only). | ```Unconfigured``` |
-| Password | The plain text password for accessing the Elasticsearch installation (Basic Authentication Only). | ```Unconfigured``` |
+| AdditionalMetrics | A python list of additional metrics to be emitted.  The names provided must match a metric defined in the elasticsearch\_collectd.py file. | \[""\] |
+| Username | The plain text username for accessing the Elasticsearch installation (Basic Authentication Only). | `Unconfigured` |
+| Password | The plain text password for accessing the Elasticsearch installation (Basic Authentication Only). | `Unconfigured` |
 | ThreadPools | "search" and "index" thread pools are required, but additional threadpools can be specified in the list. See [note regarding available thread pools](#note-available-thread-pools) below. | \["search","index"\] |
 
 #### Note: Available thread pools
@@ -106,14 +112,14 @@ The following table indicates thread pools that can be monitored by this plugin 
 | snapshot         |&#x2713;     |&#x2713;     |&#x2713;     |
 | warmer           |&#x2713;     |&#x2713;     |&#x2713;     |
 | refresh          |&#x2713;     |&#x2713;     |&#x2713;     |
-| fetch\_shard_started|      |&#x2713;     |&#x2713;     |
-| fetch\_shard_store|        |&#x2713;     |&#x2713;     |
+| fetch\_shard\_started|      |&#x2713;     |&#x2713;     |
+| fetch\_shard\_store|        |&#x2713;     |&#x2713;     |
 | listener         |        |&#x2713;     |&#x2713;     |
 | management       |        |&#x2713;     |&#x2713;     |
 | percolate        |        |&#x2713;     |&#x2713;     |
 | suggest          |        |&#x2713;     |&#x2713;     |
-| force_merge      |        |        |&#x2713;     |
- 
+| force\_merge      |        |        |&#x2713;     |
+
 
 #### Note: Using this plugin from a container deployment
 
@@ -140,13 +146,13 @@ The call to collect index statistics can be CPU-intensive. For this reason Signa
 
 ### USAGE
 
-Sample of pre-built dashboard in SignalFx:
+Sample of built-in dashboard in SignalFx:
 
 ![](././img/dashboard_elasticsearch.png)
 
 ### METRICS
 
-For full documentation of the metrics and dimensions emitted by this plugin, see the `docs` directory in this repository.
+For documentation of the metrics and dimensions emitted by this plugin, [click here](./docs).
 
 ### LICENSE
 

@@ -1,6 +1,6 @@
 # ![](./img/integrations_activemq.png) ActiveMQ Message Age Listener
 
-_This is a directory that consolidates all the metadata associated with the ActiveMQ message age listener. The relevant code for the plugin can be found [here](https://github.com/signalfx/activemq-integration)_
+Metadata associated with the ActiveMQ message age listener can be found <a target="_blank" href="https://github.com/signalfx/integrations/tree/release/amq-message-age">here</a>. The relevant code for the plugin can be found <a target="_blank" href="https://github.com/signalfx/activemq-integration">here</a>.
 
 - [Description](#description)
 - [Requirements and Dependencies](#requirements-and-dependencies)
@@ -12,7 +12,7 @@ _This is a directory that consolidates all the metadata associated with the Acti
 
 ### DESCRIPTION
 
-This tool measures the age of messages in ActiveMQ queues, and publishes the results to SignalFx. It actively inspects the messages that are waiting to be delivered in each queue, and therefore is especially useful for detecting messages that are "stuck" in ActiveMQ queues and unable to be delivered. 
+This tool measures the age of messages in ActiveMQ queues, and publishes the results to SignalFx. It actively inspects the messages that are waiting to be delivered in each queue, and therefore is especially useful for detecting messages that are "stuck" in ActiveMQ queues and unable to be delivered.
 
 To monitor the general health of ActiveMQ, see [SignalFx's ActiveMQ integration](https://github.com/signalfx/integrations/tree/master/collectd-activemq)[](sfx_link:collectd-activemq).
 
@@ -31,14 +31,14 @@ To monitor the general health of ActiveMQ, see [SignalFx's ActiveMQ integration]
 | ActiveMQ  | 5.8.0 or later |
 | Java | 1.5 or later |
 | Maven | (match with Java version) |
-       
+
 ### INSTALLATION
 
-1. Download SignalFx's ActiveMQ message age listener from [https://github.com/signalfx/activemq-integration](https://github.com/signalfx/activemq-integration). 
+1. Download SignalFx's ActiveMQ message age listener from <a target="_blank" href="https://github.com/signalfx/activemq-integration">https://github.com/signalfx/activemq-integration</a>.
 
-1. Modify `/activemq-integration/amq-message-age/properties` to provide values that make sense for your environment, as described in [Configuration](#configuration), below.
+2. Modify `/activemq-integration/amq-message-age/properties` to provide values that make sense for your environment, as described in [Configuration](#configuration), below.
 
-1. Run the tool as follows, replacing `path/to/` with the location of the files you downloaded in step 1: 
+3. Run the tool as follows, replacing `path/to/` with the location of the files you downloaded in step 1:
 
         cd path/to/activemq-integration/amq-message-age
         ./run.sh
@@ -46,25 +46,36 @@ To monitor the general health of ActiveMQ, see [SignalFx's ActiveMQ integration]
 
 ### CONFIGURATION
 
+#### Configuring your endpoint
+
+Before we can send metrics to SignalFx, we need to make sure you are sending them to the correct SignalFx realm.
+To determine what realm you are in (YOUR_SIGNALFX_REALM), check your profile page in the SignalFx web application (click the avatar in the upper right and click My Profile).
+If you are not in the `us0` realm, you will need to set the `sfx_host` configuration option, as shown below.
+
+You will also need to set the `token` configuration option to your SignalFx organization access token (YOUR_SIGNALFX_API_TOKEN).
+For more information on authentication, see the API's [Authentication documentation](https://developers.signalfx.com/basics/authentication.html).
+
+#### Configuration options
+
 Supply values for the following properties in the `/activemq-integration/amq-message-age/properties` file.
 
 | configuration option | definition | default value |
 | ---------------------|------------|---------------|
 | path | Filesystem path to ActiveMQ executable | <Path-To-ActiveMQ-Executable>/activemq |
-| token | SignalFx API token | <SignalFX-API-TOKEN> |
-| sfx_host | Host to which to transmit data | `https://ingest.signalfx.com` |
+| token | SignalFx Organization Access Token | none |
+| sfx\_host | Host to which to transmit data | `https://ingest.us0.signalfx.com` |
 | interval | Interval at which to measure message age, in milliseconds. | 3000 |
 | host | URL at which to connect to ActiveMQ broker. | `tcp://localhost:61616` |
-| host_name | Name of this ActiveMQ host. This value appears in the dimension `host` in SignalFx. | ActiveMQ_Host1 |
-| broker_name | Name of this ActiveMQ broker. This value appears in the dimension `broker` in SignalFx. | Broker1 |
+| host\_name | Name of this ActiveMQ host. This value appears in the dimension `host` in SignalFx. | ActiveMQ_Host1 |
+| broker\_name | Name of this ActiveMQ broker. This value appears in the dimension `broker` in SignalFx. | Broker1 |
 
 ### USAGE
 
-In some versions of ActiveMQ, messages sometimes get “stuck” in the queue, and message consumers won’t pick them up even if they have available capacity. This bug causes messages to never be delivered. Monitoring tools are typically unable to detect this condition due to a lack of visibility into the messages that never make it out of the queue. 
+In some versions of ActiveMQ, messages sometimes get “stuck” in the queue, and message consumers won’t pick them up even if they have available capacity. This bug causes messages to never be delivered. Monitoring tools are typically unable to detect this condition due to a lack of visibility into the messages that never make it out of the queue.
 
-This tool provides visibility into "stuck" messages in ActiveMQ by inspecting each enqueued message, calculating the average and maximum age of messages per queue, and reporting those metrics to SignalFx using our [Java client library](https://github.com/signalfx/integrations/tree/master/lib-java). 
+This tool provides visibility into "stuck" messages in ActiveMQ by inspecting each enqueued message, calculating the average and maximum age of messages per queue, and reporting those metrics to SignalFx using our <a target="_blank" href="https://github.com/signalfx/integrations/tree/master/lib-java">Java client library</a>.
 
-Our built-in dashboard for this data makes it immediately visible when messages have been waiting a long time to be delivered. 
+Our built-in dashboard for this data makes it immediately visible when messages have been waiting a long time to be delivered.
 
 ![](./img/dashboard_activemq_messageage.png)
 
@@ -80,7 +91,7 @@ In this example, rate of change tells us how much older the oldest message in ea
 
 ### METRICS
 
-For documentation of the metrics and dimensions emitted by this plugin, [click here](././docs).
+For documentation of the metrics and dimensions emitted by this plugin, [click here](./docs).
 
 ### LICENSE
 

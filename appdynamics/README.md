@@ -1,6 +1,6 @@
 # ![](https://github.com/signalfx/integrations/blob/master/appdynamics/img/integrations_appdynamics.png) AppDynamics   
 
-_This is a directory to consolidate all the metadata associated with the AppDynamics Integration. The relevant code for the integration can be found [here](https://github.com/signalfx/appd-integration)_
+Metadata associated with the AppDynamics Integration can be found <a target="_blank" href="https://github.com/signalfx/integrations/tree/release/appdynamics">here</a>. The relevant code for the integration can be found <a target="_blank" href="https://github.com/signalfx/appd-integration">here</a>.
 
 - [Description](#description)
 - [Requirements and Dependencies](#requirements-and-dependencies)
@@ -21,7 +21,7 @@ This is the SignalFx AppDynamics integration, which brings metrics captured thro
 
 ### INSTALLATION
 
-The [appd-report-standalone](https://github.com/signalfx/appd-integration/tree/master/appd-report-standalone) module is a standalone process that parses configurations and reports
+The <a target="_blank" href="https://github.com/signalfx/appd-integration/tree/master/appd-report-standalone">appd-report-standalone</a> module is a standalone process that parses configurations and reports
 AppDynamics metrics at specified intervals.
 
 Install this module as follows:
@@ -38,18 +38,18 @@ Provide configuration to this process by setting environment variables as follow
 
 #### Required Environment Variables
 
-| Variable name | Definition | 
+| Variable name | Definition |
 |---------------|------------|
-| APPD_USERNAME | AppDynamics username | 
+| APPD_USERNAME | AppDynamics username |
 | APPD_PASSWORD | AppDynamics password |
 | APPD_HOST | AppDynamics hostname |
-| SIGNALFX_TOKEN | Your SignalFx API token |
-| SIGNALFX\_APPD_METRICS | Name of the metrics configuration file (default: metrics.json) |
-| APPD_INTERVAL | Frequency in minutes with which metrics will be sent to SignalFx (default: 1 minute) |
+| SIGNALFX\_TOKEN | YOUR_SIGNALFX_API_TOKEN |
+| SIGNALFX\_APPD\_METRICS | Name of the metrics configuration file (default: metrics.json) |
+| APPD\_INTERVAL | Frequency in minutes with which metrics will be sent to SignalFx (default: 1 minute) |
 
 ### USAGE
 
-[Metrics.json](https://github.com/signalfx/appd-integration/blob/master/appd-report-standalone/metrics.json) contains configurations for the list of apps, metrics inside each app, and dimensions mapping for each app.
+<a target="_blank" href="https://github.com/signalfx/appd-integration/blob/master/appd-report-standalone/metrics.json">Metrics.json</a> contains configurations for the list of apps, metrics inside each app, and dimensions mapping for each app.
 
 AppDynamics metric paths are described as a pipe-delimited string (|), as follows: `Performance|AppServer1|Resources|CPU`
 

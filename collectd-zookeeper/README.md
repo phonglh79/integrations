@@ -1,6 +1,6 @@
 # ![](https://github.com/signalfx/integrations/blob/master/collectd-zookeeper/img/integrations_zookeeper.png) Zookeeper
 
-_This is a directory that consolidates all the metadata associated with SignalFx's integration with Zookeeper. The relevant code for the plugin can be found [here](https://github.com/signalfx/collectd-zookeeper)_
+Metadata associated with SignalFx's integration with Zookeeper can be found <a target="_blank" href="https://github.com/signalfx/integrations/tree/release/collectd-zookeeper">here</a>. The relevant code for the plugin can be found <a target="_blank" href="https://github.com/signalfx/collectd-zookeeper">here</a>.
 
 - [Description](#description)
 - [Requirements and Dependencies](#requirements-and-dependencies)
@@ -12,9 +12,7 @@ _This is a directory that consolidates all the metadata associated with SignalFx
 
 ### DESCRIPTION
 
-This is a collectd plugin for getting metrics and information from
-[ZooKeeper](http://zookeeper.apache.org) servers, based on the ZooKeeper monitoring script
-[check_zookeeper.py](https://svn.apache.org/repos/asf/zookeeper/trunk/src/contrib/monitoring/check_zookeeper.py).
+This is a collectd plugin for getting metrics and information from <a target="_blank" href="http://zookeeper.apache.org">ZooKeeper</a> servers, based on the ZooKeeper monitoring script <a target="_blank" href="https://svn.apache.org/repos/asf/zookeeper/trunk/src/contrib/monitoring/check_zookeeper.py">check_zookeeper.py</a>.
 
 #### FEATURES
 
@@ -40,23 +38,29 @@ This plugin requires:
 | Zookeeper         | 3.4.0+   |
 
 #### Note:
- - Requires ZooKeeper 3.4.0 or greater in order to use the `mntr` [four letter word command](http://zookeeper.apache.org/doc/trunk/zookeeperAdmin.html#sc_zkCommands).
+ - Requires ZooKeeper 3.4.0 or greater in order to use the `mntr` <a target="_blank" href="http://zookeeper.apache.org/doc/trunk/zookeeperAdmin.html#sc_zkCommands">four letter word command</a>.
  - If support for earlier versions is needed, add `srvr` command, available in since 3.3.0, or `stat` (fetches extra uneeded data but available pre-3.3).
 
 
 ### INSTALLATION
 
-1. Download the [collectd-zookeeper Python module](https://github.com/signalfx/collectd-zookeeper).
+**If you are using the new Smart Agent, see the docs for [the collectd/zookeeper
+monitor](https://github.com/signalfx/signalfx-agent/tree/master/docs/monitors/collectd-zookeeper.md)
+for more information.  The configuration documentation below may be helpful as
+well, but consult the Smart Agent repo's docs for the exact schema.**
 
-1. Download SignalFx’s [sample configuration file](https://github.com/signalfx/integrations/blob/master/collectd-zookeeper/20-zookeeper.conf) to `/etc/collectd/managed_config`.
 
-1. Modify the configuration file as described in [Configuration](#configuration) below.
+1. Download the <a target="_blank" href="https://github.com/signalfx/collectd-zookeeper">collectd-zookeeper Python module</a>.
 
-1. Restart collectd.
+2. Download SignalFx’s <a target="_blank" href="https://github.com/signalfx/integrations/blob/master/collectd-zookeeper/20-zookeeper.conf">sample configuration file</a> to `/etc/collectd/managed_config`.
+
+3. Modify the configuration file as described in [Configuration](#configuration) below.
+
+4. Restart collectd.
 
 ### CONFIGURATION
 
-Using the example configuration file [20-zookeeper.conf](https://github.com/signalfx/integrations/tree/master/collectd-zookeeper/20-zookeeper.conf) as a guide, provide values for the configuration options listed below that make sense for your environment and allow you to connect to the Zookeeper instance to be monitored.
+Using the example configuration file <a target="_blank" href="https://github.com/signalfx/integrations/tree/master/collectd-zookeeper/20-zookeeper.conf">20-zookeeper.conf</a> as a guide, provide values for the configuration options listed below that make sense for your environment and allow you to connect to the Zookeeper instance to be monitored.
 
 | Setting            | Description     | Default|
 |--------------------|-----------------|-----------|
@@ -66,13 +70,13 @@ Using the example configuration file [20-zookeeper.conf](https://github.com/sign
 
 ### USAGE
 
-Sample of pre-built dashboard in SignalFx:
+Sample of built-in dashboard in SignalFx:
 
 ![](././img/dashboard_zookeeper.png)
 
 ### METRICS
 
-For documentation of the metrics and dimensions emitted by this plugin, [click here](././docs).
+For documentation of the metrics and dimensions emitted by this plugin, [click here](./docs).
 
 ### LICENSE
 

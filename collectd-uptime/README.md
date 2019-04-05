@@ -1,6 +1,6 @@
-# ![](https://github.com/signalfx/integrations/blob/master/collectd-uptime/img/integrations_collectd.png) Uptime collectd Plugin
+# ![](https://github.com/signalfx/integrations/blob/master/collectd/img/integrations_collectd.png) Uptime collectd Plugin
 
-_This is a directory consolidate all the metadata associated with the Tail collectd plugin. The relevant code for the plugin can be found [here](https://github.com/signalfx/collectd/blob/master/src/uptime.c)_
+Metadata associated with the Tail collectd plugin can be found <a target="_blank" href="https://github.com/signalfx/integrations/tree/release/collectd-uptime">here</a>. The relevant code for the plugin can be found <a target="_blank" href="https://github.com/signalfx/collectd/blob/master/src/uptime.c">here</a>.
 
 - [Description](#description)
 - [Requirements and Dependencies](#requirements-and-dependencies)
@@ -12,7 +12,7 @@ _This is a directory consolidate all the metadata associated with the Tail colle
 
 ### DESCRIPTION
 
-From [collectd wiki](https://collectd.org/wiki/index.php/Plugin:Uptime)
+From <a target="_blank" href="https://collectd.org/wiki/index.php/Plugin:Uptime">collectd wiki</a>
 
 > The Uptime plugin keeps track of the system uptime, providing informations such as the average running time or the maximum reached uptime over a certain period of time. It can be useful especially on Linux based routers/firewalls.
 
@@ -26,7 +26,13 @@ This plugin requires:
 
 ### INSTALLATION
 
-Installation and initial configuration options are available as part of the [SignalFx collectd agent](https://github.com/signalfx/integrations/tree/master/collectd). 
+**If you are using the new Smart Agent, see the docs for [the collectd/uptime
+monitor](https://github.com/signalfx/signalfx-agent/tree/master/docs/monitors/collectd-uptime.md)
+for more information.  The configuration documentation below may be helpful as
+well, but consult the Smart Agent repo's docs for the exact schema.**
+
+
+Installation and initial configuration options are available as part of the <a target="_blank" href="https://github.com/signalfx/integrations/tree/master/collectd">SignalFx collectd agent</a>.
 
 
 ### CONFIGURATION
@@ -39,8 +45,8 @@ This plugin provide the time that an individual host has been up since last boot
 
 ### METRICS
 
-For documentation of the metrics and dimensions emitted by this plugin, [click here](././docs).
+For documentation of the metrics and dimensions emitted by this plugin, [click here](./docs).
 
 ### LICENSE
 
-License for this plugin can be found [in the header of the plugin](https://github.com/signalfx/collectd/blob/master/src/uptime.c)
+License for this plugin can be found <a target="_blank" href="https://github.com/signalfx/collectd/blob/master/src/uptime.c">in the header of the plugin</a>

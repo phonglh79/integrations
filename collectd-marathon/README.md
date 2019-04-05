@@ -1,6 +1,6 @@
-# Marathon
+# ![](https://github.com/signalfx/integrations/blob/master/collectd-marathon/img/integrations_marathon.png) Marathon
 
-_This directory consolidates all the metadata associated with the Marathon plugin for collectd.  The relevant code for the plugin can be found [here](https://github.com/signalfx/collectd-marathon)_
+Metadata associated with the Marathon plugin for collectd can be found <a target="_blank" href="https://github.com/signalfx/integrations/tree/release/collectd-marathon">here</a>.  The relevant code for the plugin can be found <a target="_blank" href="https://github.com/signalfx/collectd-marathon">here</a>.
 
 - [Description](#description)
 - [Requirements and Dependencies](#requirements-and-dependencies)
@@ -12,9 +12,7 @@ _This directory consolidates all the metadata associated with the Marathon plugi
 
 ### DESCRIPTION
 
-This is the SignalFx Marathon plugin. Follow these instructions to install the Marathon plugin for collectd.
-
-The [`collectd-marathon`](https://github.com/signalfx/collectd-marathon) plugin collects metrics about Marathon applications and tasks. 
+The <a target="_blank" href="https://github.com/signalfx/collectd-marathon">collectd-marathon</a> plugin collects metrics about Marathon applications and tasks.
 
 #### Features
 ##### Built-in dashboards
@@ -48,30 +46,57 @@ The [`collectd-marathon`](https://github.com/signalfx/collectd-marathon) plugin 
 
 ### INSTALLATION
 
-1.  Download the [collectd-marathon](https://github.com/signalfx/collectd-marathon) Python module onto a host that has access to the Marathon API.
+**If you are using the new Smart Agent, see the docs for [the collectd/marathon
+monitor](https://github.com/signalfx/signalfx-agent/tree/master/docs/monitors/collectd-marathon.md)
+for more information.  The configuration documentation below may be helpful as
+well, but consult the Smart Agent repo's docs for the exact schema.**
 
-1.  Run the following command to install the module’s dependencies using `pip`, replacing the example path with the download location of the `collectd-marathon` module: 
 
-    ```
-    sudo pip install -r /path/to/collectd-marathon/requirements.txt
-    ```
-    
-1.  Download SignalFx’s [sample configuration file](https://github.com/signalfx/integrations/blob/master/collectd-marathon/20-collectd-marathon.conf) for this plugin to `/etc/collectd/managed_config`.
+1.  Download the <a target="_blank" href="https://github.com/signalfx/collectd-marathon">collectd-marathon</a> Python module onto a host that has access to the Marathon API.
 
-1.  Modify the configuration file to provide values that make sense for your environment, as described in [Configuration](#configuration) below.
+2.  Run the following command to install the module’s dependencies using `pip`, replacing the example path with the download location of the `collectd-marathon` module:
 
-1.  Restart collectd.
+        sudo pip install -r /path/to/collectd-marathon/requirements.txt
+
+3.  Download SignalFx’s <a target="_blank" href="https://github.com/signalfx/integrations/blob/master/collectd-marathon/20-collectd-marathon.conf">sample configuration file</a> for this plugin to `/etc/collectd/managed_config`.
+
+4.  Modify the configuration file to provide values that make sense for your environment, as described in [Configuration](#configuration) below.
+
+5.  Restart collectd.
 
 ### CONFIGURATION
-Using the sample configuration file [20-collectd-marathon.conf](https://github.com/signalfx/integrations/blob/master/collectd-marathon/20-collectd-marathon.conf) as a guide, provide values for the configuration options listed below that make sense for your environment.
+Using the sample configuration file <a target="_blank" href="https://github.com/signalfx/integrations/blob/master/collectd-marathon/20-collectd-marathon.conf">20-collectd-marathon.conf</a> as a guide, provide values for the configuration options listed below that make sense for your environment.
 
 | configuration option | definition | default value |
 | ---------------------|------------|---------------|
 | ModulePath | Path on disk where collectd can find this module. | `"/usr/share/collectd/collectd-marathon"` |
-| Import | Path to the name of the pythom module with out the .py extension | `marathon` |
+| Import | Path to the name of the python module with out the .py extension | `marathon` |
 | LogTraces | Logs traces from the plugin's execution | `true` |
 | verbose | Turns on verbose log statements | `False` |
-| host | A python list of `["<host>", "<port>", "username", "password"]`.  The `username` and `password` are only required for Basic Authentication with the Marathon API. |  no default |
+| host | A python list of `["<scheme>", "<host>", "<port>", "username", "password", "<dcos_auth_url>"]`. `scheme` is either "http" or "https". The `username` and `password` are only required for Basic Authentication with the Marathon API. `dcos_auth_url` is a string that takes the dcos authentication URL which the plugin uses to get authentication tokens from. Set `scheme` to "https" if operating DC/OS in strict mode and `dcos_auth_url` to "https://leader.mesos/acs/api/v1/auth/login" (which is the default DNS entry provided by DC/OS) |  no default |
+
+**Note**: Metrics from the `/metrics` endpoint are not available while operating in DC/OS strict mode.
+
+An example configuration would look like the following:
+
+```
+<LoadPlugin "python">
+  Globals true
+</LoadPlugin>
+
+<Plugin "python">
+  ModulePath "/usr/share/collectd/collectd-marathon"
+  Import "marathon"
+  LogTraces true
+  <Module "marathon">
+    # Note that the last config option can also be set to the base URL of the
+    # DC/OS UI and /acs/api/v1/auth/login is the authentication endpoint the plugin
+    # uses to obtain token for subsequent requests.
+    host  ["https", "localhost", "8443", "username", "password", "https://leader.mesos/acs/api/v1/auth/login"]
+    verbose False
+  </Module>
+</Plugin>
+```
 
 ### USAGE
 All metrics reported by the Marathon collectd plugin will contain the following dimensions:
@@ -80,12 +105,13 @@ All metrics reported by the Marathon collectd plugin will contain the following 
 - `plugin` is always set to `marathon`.
 - `plugin_instance` will always be `marathon` concated with `.` and the Mesos agent id. Ex. `marathon.<mesos agent id>`.
 
-Sample of pre-built dashboard in SignalFx:
+Sample of built-in dashboard in SignalFx:
 
 ![](././img/dashboard_marathon_overview.png)
 
 ### METRICS
-For full documentation of the metrics and dimensions emitted by this plugin, see the `docs` directory in this repository.
+
+For documentation of the metrics and dimensions emitted by this plugin, [click here](./docs).
 
 ### LICENSE
 

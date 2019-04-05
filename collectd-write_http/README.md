@@ -1,18 +1,16 @@
 # ![](https://github.com/signalfx/integrations/blob/master/collectd/img/integrations_collectd.png) Write-HTTP
 
-_This directory consolidates all the metadata associated with the Write-HTTP collectd plugin. The relevant code for the plugin can be found [here](https://github.com/signalfx/collectd/blob/master/src/write_http.c)_
+Metadata associated with the Write-HTTP collectd plugin can be found <a target="_blank" href="https://github.com/signalfx/integrations/tree/release/collectd-write_http">here</a>. The relevant code for the plugin can be found <a target="_blank" href="https://github.com/signalfx/collectd/blob/master/src/write_http.c">here</a>.
 
 - [Description](#description)
 - [Requirements and Dependencies](#requirements-and-dependencies)
 - [Installation](#installation)
 - [Configuration](#configuration)
-- [Usage](#usage)
-- [Metrics](#metrics)
 - [License](#license)
 
 ### DESCRIPTION
 
-The Write HTTP plugin sends the values collected by collectd to a web-server using HTTP POST requests. The data is formatted as PUTVAL commands, see plain text protocol. The [SignalFx collectd agent](https://github.com/signalfx/collectd) version of this plugin has been extended with **Buffer Flushing** to ensure that metrics always arrive in a timely manner, we’ve added a timer so that it transmits data to SignalFx either when the data buffer is full or when a time limit is reached, whichever happens first. This capability is particularly useful if you are only collecting small quantities of time-sensitive metrics.
+The Write HTTP plugin sends the values collected by collectd to a web-server using HTTP POST requests. The data is formatted as PUTVAL commands, see plain text protocol. The <a target="_blank" href="https://github.com/signalfx/collectd">SignalFx collectd agent</a> version of this plugin has been extended with **Buffer Flushing** to ensure that metrics always arrive in a timely manner, we’ve added a timer so that it transmits data to SignalFx either when the data buffer is full or when a time limit is reached, whichever happens first. This capability is particularly useful if you are only collecting small quantities of time-sensitive metrics.
 
 ### REQUIREMENTS AND DEPENDENCIES
 
@@ -24,12 +22,12 @@ This plugin requires:
 
 ### INSTALLATION
 
-Installation and initial configuration options are available as part of the [SignalFx collectd agent](https://github.com/signalfx/integrations/tree/master/collectd). 
+Installation and initial configuration options are available as part of the <a target="_blank" href="https://github.com/signalfx/integrations/tree/master/collectd">SignalFx collectd agent</a>.
 
 
 ### CONFIGURATION
 
-From [collectd wiki](https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_write_http):
+From <a target="_blank" href="https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_write_http">collectd wiki</a>:
 
 >This output plugin submits values to an HTTP server using POST requests and encoding metrics with JSON or using the PUTVAL command described in collectd-unixsock(5).
 
@@ -45,6 +43,7 @@ Synopsis:
    </Node>
  </Plugin>
 ```
+
 > The plugin can send values to multiple HTTP servers by specifying one <Node Name> block for each server. Within each Node block, the following options are available:
 
 | Option | type | description |
@@ -59,7 +58,7 @@ Synopsis:
 |ClientKey| File|File that holds the private key in PEM format to be used for certificate-based authentication.|
 |ClientCert| File|File that holds the SSL certificate to be used for certificate-based authentication.|
 |ClientKeyPass| Password|Password required to load the private key in ClientKey.|
-|SSLVersion | SSLv2/SSLv3/TLSv1/TLSv1_0/TLSv1_1/TLSv1_2|Define which SSL protocol version must be used. By default libcurl will attempt to figure out the remote SSL protocol version. See curl_easy_setopt(3) for more details.|
+|SSLVersion | SSLv2/SSLv3/TLSv1/TLSv1\_0/TLSv1\_1/TLSv1\_2|Define which SSL protocol version must be used. By default libcurl will attempt to figure out the remote SSL protocol version. See curl\_easy\_setopt(3) for more details.|
 |Format |Command/JSON|Format of the output to generate. If set to Command, will create output that is understood by the Exec and UnixSock plugins. When set to JSON, will create output in the JavaScript Object Notation (JSON). Defaults to Command.|
 |StoreRates| true/false|If set to true, convert counter values to rates. If set to false (the default) counter values are stored as is, i.e. as an increasing integer number.|
 |BufferSize| Bytes|Sets the send buffer size to Bytes. By increasing this buffer, less HTTP requests will be generated, but more metrics will be batched / metrics are cached for longer before being sent, introducing additional delay until they are available on the server side. Bytes must be at least 1024 and cannot exceed the size of an int, i.e. 2 GByte. Defaults to 4096.|
@@ -71,4 +70,4 @@ Synopsis:
 
 ### LICENSE
 
-License for this plugin can be found [in the header of the plugin](https://github.com/signalfx/collectd/blob/master/src/write_http.c)
+License for this plugin can be found <a target="_blank" href="https://github.com/signalfx/collectd/blob/master/src/write_http.c">in the header of the plugin</a>

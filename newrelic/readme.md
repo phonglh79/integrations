@@ -1,4 +1,4 @@
-#![](././img/integration_newrelic.png) New Relic
+# ![](././img/integrations_newrelic.png) New Relic
 
 - [Description](#description)
 - [Requirements and Dependencies](#requirements-and-dependencies)
@@ -8,7 +8,7 @@
 
 ### DESCRIPTION
 
-This document describes SignalFx's integration with [New Relic](https://www.newrelic.com). Use this integration to view New Relic metrics in SignalFx. With this integration, you can apply SignalFx's analytics to New Relic data, use New Relic data in alerts, and enrich your infrastructure data with data about your New Relic-instrumented applications.
+This document describes SignalFx's integration with <a target="_blank" href="https://www.newrelic.com">New Relic</a>. Use this integration to view New Relic metrics in SignalFx. With this integration, you can apply SignalFx's analytics to New Relic data, use New Relic data in alerts, and enrich your infrastructure data with data about your New Relic-instrumented applications.
 
 ### REQUIREMENTS AND DEPENDENCIES
 
@@ -16,19 +16,19 @@ This integration requires a New Relic account. You must be an administrator of y
 
 ### INSTALLATION
 
-1. Follow [New Relic's instructions](https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/api-keys) to obtain a REST API key for your account.
+1. Follow <a target="_blank" href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/api-keys">New Relic's instructions</a> to obtain a REST API key for your account.
 
-1. Click the **New Integration** button. In the field labelled **API key**, enter the API key that you obtained in step 1, then click **Validate**. A message appears that says **Validated!** If a different message appears, contact [support@signalfx.com](mailto:support@signalfx.com) for help.
+2. Click the **New Integration** button. In the field labelled **API key**, enter the API key that you obtained in step 1, then click **Validate**. A message appears that says **Validated!** If a different message appears, contact [support@signalfx.com](mailto:support@signalfx.com) for help.
 
-1. Select a New Relic module to sync to SignalFx (APM, Mobile, or Servers). You will create a sync rule for that module to control which metrics SignalFx will sync from New Relic.
+3. Select a New Relic module to sync to SignalFx (APM, Mobile, or Servers). You will create a sync rule for that module to control which metrics SignalFx will sync from New Relic.
 
-1. Click **Add Apps** or (for the Servers module) **Add Servers**. Use typeahead to include at least one filter string, checking results of the filter on the Sample Matches list.  Click the blue **+** button to add a string to the list of filters. (**Note:** Because the volume of available metrics from New Relic may be large, SignalFx recommends filtering down to just one or a few items to start). When your filter includes all the items you wish to monitor, click **Done**. 
+4. Click **Add Apps** or (for the Servers module) **Add Servers**. Use typeahead to include at least one filter string, checking results of the filter on the Sample Matches list.  Click the blue **+** button to add a string to the list of filters. (**Note:** Because the volume of available metrics from New Relic may be large, SignalFx recommends filtering down to just one or a few items to start). When your filter includes all the items you wish to monitor, click **Done**.
 
-1. (optional) Select metrics and stats to monitor. By default, all are monitored.
+5. (optional) Select metrics and stats to monitor. By default, all are monitored.
 
-1. (optional) Click **New Sync Rule** and repeat steps 3-5 for other modules.
+6. (optional) Click **New Sync Rule** and repeat steps 3-5 for other modules.
 
-1. Click **Save**. The choices you made for each module are saved as individual sync rules. You can later reopen the New Relic integration to add, edit, or delete sync rules.
+7. Click **Save**. The choices you made for each module are saved as individual sync rules. You can later reopen the New Relic integration to add, edit, or delete sync rules.
 
 Your New Relic account is now connected and ready to use. Data from New Relic will arrive at SignalFx within minutes.
 
@@ -38,7 +38,7 @@ This section includes information that can help you build SignalFx charts from N
 
 #### Example New Relic dashboards
 
-SignalFx provides example dashboards that you can use as a baseline for creating your own New Relic charts in SignalFx. You can import them to SignalFx by [clicking here to download the JSON file](https://github.com/signalfx/integrations/blob/master/newrelic/dashboards/Page_SignalFx%20collectd%20%2B%20New%20Relic.json). In SignalFx, open the menu in the top right-hand corner of the app next to your profile image, and selecting **Import dashboard group**. This will create a new dashboard group called "SignalFx + New Relic" that contains two example dashboards:
+SignalFx provides example dashboards that you can use as a baseline for creating your own New Relic charts in SignalFx. You can import them to SignalFx by <a target="_blank" href="https://github.com/signalfx/integrations/blob/master/newrelic/dashboards/Page_SignalFx%20collectd%20%2B%20New%20Relic.json">clicking here to download the JSON file</a>. In SignalFx, open the menu in the top right-hand corner of the app next to your profile image, and selecting **Import dashboard group**. This will create a new dashboard group called "SignalFx + New Relic" that contains two example dashboards:
 
 * **"New Relic Applications Overview"** - This shows how to display metrics for multiple New Relic applications at once, like response time and requests per minute.
   ![](././img/dashboard_newrelic.png)
@@ -57,21 +57,19 @@ Note that sometimes, as in this example, the delimiter `/` appears in the metric
 
 SignalFx has made two changes to the names of metrics as we collect them from New Relic, in order to enhance the ability to perform [wildcard searches](#regular-wildcard-mode):
 
-**All New Relic metrics have their appropriate object id appended to the metric name.** For metrics from the Applications module, this is an application ID. For metrics from the Servers module, this is a server ID. The same value can be found in the id dimension associated with that metric.
+* **All New Relic metrics have their appropriate object id appended to the metric name.** For metrics from the Applications module, this is an application ID. For metrics from the Servers module, this is a server ID. The same value can be found in the id dimension associated with that metric.
 
-Examples:
+  Examples:
 
-* New Relic application metric as obtained from API:
-`Apdex/Expressjs/GET//*/score`
-* As it appears in SignalFx with application id 12345678 appended:
-`Apdex/Expressjs/GET//*/score/12345678`
+  * New Relic application metric as obtained from API: `Apdex/Expressjs/GET//*/score`
+  * As it appears in SignalFx with application id 12345678 appended: `Apdex/Expressjs/GET//*/score/12345678`
 
-**Server metrics have their account ID prepended in front of the metric name.** This only occurs for Server metrics because account ID information is only available for Server metrics. The same value can be found in the account dimension.
+* **Server metrics have their account ID prepended in front of the metric name.** This only occurs for Server metrics because account ID information is only available for Server metrics. The same value can be found in the account dimension.
 
-Examples:
+  Examples:
 
-* New Relic server metric as obtained from API: `System/CPU/System/percent/average_exclusive_time`
-* As it appears in SignalFx, with account id 7654321 prepended and server id 12345678 appended: `7654321/System/CPU/System/percent/average_exclusive_time/12345678`
+  * New Relic server metric as obtained from API: `System/CPU/System/percent/average_exclusive_time`
+  * As it appears in SignalFx, with account id 7654321 prepended and server id 12345678 appended: `7654321/System/CPU/System/percent/average_exclusive_time/12345678`
 
 To help you compose charts with New Relic metrics, SignalFx supports two kinds of wildcard searching: regular wildcard mode, and New Relic wildcard mode.
 
